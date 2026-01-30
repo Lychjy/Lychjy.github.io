@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="星岚科技公司门户：云与数据、AI 应用、安全合规的一体化解决方案。" />
+    <title>星岚科技 | 公司门户</title>
+    <style>
+      :root{
+        --bg:#070b14;--panel:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);
+        --text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);--subtle:rgba(255,255,255,.56);
+        --brand:#7c5cff;--brand2:#29d8ff;--ok:#38f2a4;--warn:#ffd36d;
+        --shadow:0 18px 60px rgba(0,0,0,.55);--shadow2:0 12px 44px rgba(0,0,0,.35);
+        --r:18px;--r2:22px;--max:1120px;--pad:20px;--nav:72px;--ring:0 0 0 4px rgba(124,92,255,.25);
+      }
+      *{box-sizing:border-box} html{scroll-behavior:smooth}
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif;
+        background:radial-gradient(1200px 560px at 20% -10%,rgba(124,92,255,.45),transparent),
+          radial-gradient(1000px 520px at 80% 0%,rgba(41,216,255,.35),transparent),
+          radial-gradient(900px 520px at 70% 110%,rgba(56,242,164,.16),transparent),var(--bg);
+        color:var(--text);line-height:1.5;overflow-x:hidden}
+      a{color:inherit;text-decoration:none} .container{width:min(var(--max),calc(100% - var(--pad)*2));margin:0 auto}
+      .skip{position:absolute;left:-999px;top:12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.12);
+        border:1px solid rgba(255,255,255,.18);color:var(--text);z-index:9999}
+      .skip:focus{left:12px;outline:none;box-shadow:var(--ring)}
+
+      header{position:sticky;top:0;z-index:1000;height:var(--nav);backdrop-filter:blur(14px);
+        background:rgba(7,11,20,.65);border-bottom:1px solid rgba(255,255,255,.10)}
+      .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+      .brand{display:flex;align-items:center;gap:10px;font-weight:760;letter-spacing:.2px}
+      .logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));
+        box-shadow:0 12px 24px rgba(124,92,255,.25);border:1px solid rgba(255,255,255,.18)}
+      .links{display:flex;gap:16px;color:var(--muted);font-size:14px}
+      .links a{padding:10px 10px;border-radius:12px;transition:160ms}
+      .links a:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.92)}
+      .actions{display:flex;align-items:center;gap:10px}
+      .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:14px;
+        border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);
+        font-weight:650;font-size:14px;cursor:pointer;transition:160ms;user-select:none}
+      .btn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+      .btn:active{transform:translateY(0)} .btn:focus{outline:none;box-shadow:var(--ring)}
+      .primary{border:none;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 16px 36px rgba(124,92,255,.24)}
+      .menu{display:none;width:42px;height:42px;padding:0;border-radius:14px}
+      .menu i{display:block;width:18px;height:12px;margin:auto;position:relative}
+      .menu i:before,.menu i:after,.menu i span{content:"";position:absolute;left:0;right:0;height:2px;border-radius:99px;background:rgba(255,255,255,.86)}
+      .menu i:before{top:0} .menu i span{top:5px} .menu i:after{bottom:0}
+      .mobile{display:none;position:fixed;inset:var(--nav) 0 auto 0;background:rgba(7,11,20,.74);backdrop-filter:blur(18px);
+        border-top:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(255,255,255,.10);padding:12px 0;z-index:999}
+      .mobile.open{display:block} .mobile a{display:block;padding:12px var(--pad)} .mobile a:hover{background:rgba(255,255,255,.06)}
+
+      section{padding:56px 0} .hero{padding:64px 0 24px}
+      .gridHero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+      .panel{border-radius:var(--r2);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.04));
+        border:1px solid var(--stroke);box-shadow:var(--shadow);overflow:hidden;position:relative}
+      .panel:before{content:"";position:absolute;inset:-2px;background:radial-gradient(600px 240px at 10% 0%,rgba(124,92,255,.55),transparent),
+        radial-gradient(520px 260px at 90% 20%,rgba(41,216,255,.40),transparent);opacity:.35;pointer-events:none}
+      .heroMain{padding:30px 26px;position:relative}
+      .pill{display:inline-flex;gap:10px;align-items:center;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.08);
+        border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.82);font-weight:650;font-size:13px}
+      .pill b{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--ok),var(--brand2));box-shadow:0 0 0 3px rgba(56,242,164,.14)}
+      h1{margin:14px 0 10px;font-size:clamp(30px,3.6vw,46px);line-height:1.1;letter-spacing:-.02em}
+      .sub{margin:0;color:var(--muted);font-size:16px;max-width:56ch}
+      .heroActions{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+      .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:rgba(255,255,255,.78);
+        padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+      .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.48)} .ok{background:var(--ok);box-shadow:0 0 0 3px rgba(56,242,164,.14)}
+      .warn{background:var(--warn);box-shadow:0 0 0 3px rgba(255,211,109,.14)}
+      .kpis{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+      .kpi{border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);padding:12px}
+      .kpi strong{display:block;font-size:18px} .kpi span{display:block;font-size:12px;color:var(--subtle);margin-top:6px}
+      .side{padding:22px;display:grid;gap:12px;align-content:start;position:relative}
+      .mini{border-radius:var(--r);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:14px;box-shadow:var(--shadow2)}
+      .mini h3{margin:0;font-size:13px;font-weight:760;color:rgba(255,255,255,.86)}
+      .mini p{margin:8px 0 0;font-size:13px;color:var(--muted)}
+
+      .head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px}
+      .head h2{margin:0;font-size:22px;letter-spacing:-.01em} .head p{margin:0;color:var(--muted);font-size:14px;max-width:72ch}
+      .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+      .card{border-radius:var(--r);background:var(--panel);border:1px solid var(--stroke);box-shadow:var(--shadow2);padding:16px}
+      .card h3{margin:0;font-size:15px} .card p{margin:10px 0 0;color:var(--muted);font-size:13px}
+      .icon{width:40px;height:40px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid var(--stroke);margin-bottom:12px}
+      .icon svg{width:18px;height:18px;opacity:.92}
+      .services .card{grid-column:span 4}
+      .solutions .card{grid-column:span 6;padding:18px}
+      .list{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px;color:rgba(255,255,255,.84);font-size:13px}
+      .list li{display:flex;align-items:center;gap:10px}
+      .check{width:18px;height:18px;border-radius:8px;display:grid;place-items:center;background:rgba(56,242,164,.12);border:1px solid rgba(56,242,164,.24);color:rgba(56,242,164,.92);flex:0 0 auto}
+      .news .card{grid-column:span 4;display:grid;gap:10px}
+      .tag{display:inline-flex;gap:8px;align-items:center;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.78);width:fit-content}
+      .cases .card{grid-column:span 6;padding:18px;display:grid;gap:10px}
+      .meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:rgba(255,255,255,.72);font-size:12px}
+      .metric{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+      .careers .card{grid-column:span 6}
+      .job{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.05);
+        border:1px solid rgba(255,255,255,.10);margin-top:12px}
+      .job strong{display:block;font-size:14px} .job span{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+
+      .ctaWrap{border-radius:24px;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(41,216,255,.14));border:1px solid rgba(255,255,255,.14);
+        box-shadow:var(--shadow);overflow:hidden}
+      .ctaInner{padding:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}
+      .ctaInner h2{margin:0;font-size:22px} .ctaInner p{margin:10px 0 0;color:rgba(255,255,255,.82);font-size:14px;max-width:70ch}
+      form{display:grid;gap:10px} .field{display:grid;gap:6px}
+      label{font-size:12px;color:rgba(255,255,255,.78)}
+      input,textarea{width:100%;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(7,11,20,.30);
+        color:rgba(255,255,255,.92);font-size:14px;outline:none}
+      input:focus,textarea:focus{box-shadow:var(--ring);border-color:rgba(124,92,255,.45)}
+      textarea{min-height:92px;resize:vertical} .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+      .formActions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:2px}
+      .toast{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(56,242,164,.25);background:rgba(56,242,164,.10);
+        color:rgba(255,255,255,.90);font-size:13px}
+      .toast.show{display:block}
+
+      footer{padding:36px 0 50px;color:rgba(255,255,255,.70);border-top:1px solid rgba(255,255,255,.10);background:rgba(7,11,20,.35)}
+      .foot{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:14px;align-items:start}
+      .foot h3{margin:0;font-size:14px;color:rgba(255,255,255,.88)}
+      .foot p{margin:10px 0 0;font-size:13px;color:rgba(255,255,255,.72)}
+      .foot ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:13px}
+      .copyright{margin-top:16px;font-size:12px;color:rgba(255,255,255,.56)}
+
+      @media (max-width:920px){.gridHero{grid-template-columns:1fr}.ctaInner{grid-template-columns:1fr}.services .card,.news .card{grid-column:span 6}
+        .cases .card,.careers .card{grid-column:span 12}.foot{grid-template-columns:1fr}}
+      @media (max-width:640px){.links{display:none}.menu{display:inline-flex}.hero{padding-top:44px}.heroMain{padding:22px 18px}
+        .kpis{grid-template-columns:1fr}.services .card,.solutions .card,.news .card{grid-column:span 12}.row{grid-template-columns:1fr}}
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到主要内容</a>
+    <header>
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="星岚科技 首页"><span class="logo" aria-hidden="true"></span><span>星岚科技</span></a>
+        <nav class="links" aria-label="主导航">
+          <a href="#about">关于</a><a href="#services">服务</a><a href="#solutions">方案</a><a href="#news">新闻</a><a href="#contact">联系</a>
+        </nav>
+        <div class="actions">
+          <button class="btn menu" id="menuBtn" type="button" aria-label="打开菜单" aria-expanded="false"><i><span></span></i></button>
+          <a class="btn" href="#contact">预约演示</a>
+          <a class="btn primary" href="#contact">获取方案</a>
+        </div>
+      </div>
+    </header>
+    <div class="mobile" id="mobile" aria-hidden="true">
+      <div class="container">
+        <a href="#about">关于</a><a href="#services">服务</a><a href="#solutions">方案</a><a href="#news">新闻</a><a href="#cases">案例</a><a href="#careers">招聘</a><a href="#contact">联系</a>
+      </div>
+    </div>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" id="top">
+        <div class="container gridHero">
+          <div class="panel">
+            <div class="heroMain">
+              <div class="pill"><b aria-hidden="true"></b>企业级云与 AI 平台 · 安全合规先行</div>
+              <h1>让数据与智能真正落地，驱动企业增长</h1>
+              <p class="sub">从云原生底座到 AI 应用交付，我们以工程化与合规体系，帮助企业用更短周期构建可持续的数字化竞争力。</p>
+              <div class="heroActions">
+                <a class="btn primary" href="#contact">立即咨询</a>
+                <a class="btn" href="#cases">查看案例</a>
+                <span class="badge"><span class="dot ok" aria-hidden="true"></span>7×24 支持</span>
+                <span class="badge"><span class="dot warn" aria-hidden="true"></span>可审计交付</span>
+              </div>
+              <div class="kpis" aria-label="关键指标">
+                <div class="kpi"><strong>30 天</strong><span>PoC 到试点上线</span></div>
+                <div class="kpi"><strong>99.95%</strong><span>可用性目标</span></div>
+                <div class="kpi"><strong>+35%</strong><span>运维效率提升</span></div>
+              </div>
+            </div>
+          </div>
+          <aside class="panel side" aria-label="亮点卡片">
+            <div class="mini"><h3>云与数据底座</h3><p>统一治理、弹性扩展、成本可控，支撑多团队协同与持续交付。</p><span class="badge"><span class="dot" aria-hidden="true"></span>多云/混合云</span></div>
+            <div class="mini"><h3>AI 应用交付</h3><p>将大模型能力封装为可落地流程，覆盖客服、质检、知识管理等场景。</p><span class="badge"><span class="dot ok" aria-hidden="true"></span>可回滚</span></div>
+            <div class="mini"><h3>安全与合规</h3><p>身份、数据、审计全链路加固，满足关键行业合规要求。</p><span class="badge"><span class="dot warn" aria-hidden="true"></span>等保支持</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="head"><div><h2>关于我们</h2><p>我们是一支面向企业数字化的工程团队，用架构能力与交付体系保障“真正上线、持续可用”。</p></div><a class="btn" href="#contact">下载公司简介</a></div>
+          <div class="grid">
+            <div class="card" style="grid-column:span 7"><h3>使命</h3><p>用可靠的软件工程，把数据与智能转化为企业可持续增长的生产力。</p>
+              <div class="meta" style="margin-top:12px"><span class="metric"><span class="dot ok" aria-hidden="true"></span>工程化交付</span><span class="metric"><span class="dot" aria-hidden="true"></span>成本可控</span><span class="metric"><span class="dot warn" aria-hidden="true"></span>安全合规</span></div></div>
+            <div class="card" style="grid-column:span 5"><h3>交付方式</h3><p>评估 → 方案 → 试点 → 上线 → 运营 → 持续优化。支持本地化部署与专属交付团队。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="services">
+        <div class="container">
+          <div class="head"><div><h2>产品与服务</h2><p>以工程化交付为核心，提供从咨询、建设到运营的一体化服务能力。</p></div><a class="btn" href="#contact">获取产品手册</a></div>
+          <div class="grid">
+            <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.5a4.5 4.5 0 0 0-1.5-8.7A6 6 0 0 0 6.2 9.3"/><path d="M6 16a4 4 0 0 1 .3-7.99"/><path d="M8 16h12"/><path d="M8 20h12"/></svg></div><h3>云原生平台建设</h3><p>容器平台、CI/CD、可观测与 FinOps 成本治理，打造稳定数字底座。</p></article>
+            <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v10H4z"/><path d="M8 18h8"/><path d="M9 15v6"/><path d="M15 15v6"/></svg></div><h3>数据中台与治理</h3><p>元数据、质量、指标体系与权限治理，让数据可用、可控、可信。</p></article>
+            <article class="card"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M12 8a4 4 0 1 0 0 8a4 4 0 0 0 0-8z"/></svg></div><h3>AI 应用与自动化</h3><p>知识库与智能流程，落地客服、质检、办公自动化等场景。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="solutions" id="solutions">
+        <div class="container">
+          <div class="head"><div><h2>解决方案</h2><p>面向业务目标的组合式能力，覆盖关键行业与核心流程。</p></div><a class="btn" href="#contact">预约架构评估</a></div>
+          <div class="grid">
+            <article class="card"><div class="tag"><span class="dot ok" aria-hidden="true"></span>智能运营</div><h3>全链路可观测与 AIOps</h3><p>统一日志、指标、追踪与告警，智能分析降低 MTTR。</p><ul class="list"><li><span class="check" aria-hidden="true">✓</span>链路追踪与拓扑</li><li><span class="check" aria-hidden="true">✓</span>异常检测与容量预测</li><li><span class="check" aria-hidden="true">✓</span>变更影响分析</li></ul></article>
+            <article class="card"><div class="tag"><span class="dot warn" aria-hidden="true"></span>数据资产</div><h3>数据资产化与指标体系</h3><p>统一指标口径与数据目录，形成跨部门协作的数据资产运营体系。</p><ul class="list"><li><span class="check" aria-hidden="true">✓</span>血缘追踪与口径治理</li><li><span class="check" aria-hidden="true">✓</span>敏感数据保护与审计</li><li><span class="check" aria-hidden="true">✓</span>质量规则与 SLA 管理</li></ul></article>
+            <article class="card"><div class="tag"><span class="dot" aria-hidden="true"></span>AI 落地</div><h3>业务智能体与知识库</h3><p>将知识与流程组合为可控智能体，支持多渠道问答与工单流转。</p><ul class="list"><li><span class="check" aria-hidden="true">✓</span>私有化部署与隔离</li><li><span class="check" aria-hidden="true">✓</span>提示词与工具治理</li><li><span class="check" aria-hidden="true">✓</span>效果评估与迭代</li></ul></article>
+            <article class="card"><div class="tag"><span class="dot ok" aria-hidden="true"></span>安全合规</div><h3>零信任与统一身份</h3><p>以身份为边界统一权限与审计，兼容多系统与多环境。</p><ul class="list"><li><span class="check" aria-hidden="true">✓</span>统一认证与权限</li><li><span class="check" aria-hidden="true">✓</span>最小权限策略</li><li><span class="check" aria-hidden="true">✓</span>审计与告警联动</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="news" id="news">
+        <div class="container">
+          <div class="head"><div><h2>新闻动态</h2><p>关注产品更新、行业洞察与客户共创。</p></div><a class="btn" href="#contact">订阅动态</a></div>
+          <div class="grid">
+            <article class="card"><div class="tag"><span class="dot" aria-hidden="true"></span>产品更新</div><h3>统一观测平台发布 2.0</h3><p>新增变更影响分析与容量预测，提升核心系统稳定性与应急效率。</p><div class="meta"><span class="metric">2026-01-18</span><span class="metric">发布</span></div></article>
+            <article class="card"><div class="tag"><span class="dot ok" aria-hidden="true"></span>客户共创</div><h3>AI 质检落地电商客服</h3><p>辅助质检与风险发现，典型场景将质检覆盖率提升至 95% 以上。</p><div class="meta"><span class="metric">2026-01-06</span><span class="metric">案例</span></div></article>
+            <article class="card"><div class="tag"><span class="dot warn" aria-hidden="true"></span>行业洞察</div><h3>混合云成本治理实践</h3><p>从计费拆分、容量规划到自动化关停，持续降低 20%+ 无效资源。</p><div class="meta"><span class="metric">2025-12-20</span><span class="metric">观点</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cases" id="cases">
+        <div class="container">
+          <div class="head"><div><h2>客户案例</h2><p>用数据与工程化能力，帮助客户实现可衡量的业务价值。</p></div><a class="btn" href="#contact">索取案例集</a></div>
+          <div class="grid">
+            <article class="card"><h3>制造业 · 设备预测性维护</h3><p>统一采集与指标体系，结合异常检测将停机时间降低。</p><div class="meta"><span class="metric"><span class="dot ok" aria-hidden="true"></span>停机减少 18%</span><span class="metric">交付周期 6 周</span></div></article>
+            <article class="card"><h3>金融业 · 合规审计与零信任</h3><p>统一身份与审计联动，满足关键合规要求并减少权限风险。</p><div class="meta"><span class="metric"><span class="dot warn" aria-hidden="true"></span>权限风险 -40%</span><span class="metric">审计效率 +30%</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="careers" id="careers">
+        <div class="container">
+          <div class="head"><div><h2>加入我们</h2><p>我们寻找对工程与产品有热情的伙伴，一起做真正落地的企业软件。</p></div><a class="btn" href="#contact">投递简历</a></div>
+          <div class="grid">
+            <div class="card"><h3>工程文化</h3><p>质量优先、数据驱动、持续交付。每一次上线都可回滚、可复盘、可衡量。</p><div class="job"><div><strong>云原生工程师</strong><span>K8s / CI/CD / Observability</span></div><a class="btn" href="#contact">申请</a></div></div>
+            <div class="card"><h3>成长路径</h3><p>双通道成长与导师机制，重视系统设计能力与业务理解能力。</p><div class="job"><div><strong>数据平台工程师</strong><span>Lakehouse / Governance / BI</span></div><a class="btn" href="#contact">申请</a></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div class="container">
+          <div class="ctaWrap">
+            <div class="ctaInner">
+              <div>
+                <h2>联系我们</h2>
+                <p>留下需求与联系方式，我们会在 1 个工作日内与您沟通。也可邮件联系：<a href="mailto:hello@xinglan.tech">hello@xinglan.tech</a></p>
+                <p class="hint">提示：本页面为静态演示，提交后仅本地提示，不会发送到服务器。</p>
+              </div>
+              <div>
+                <form id="contactForm">
+                  <div class="row">
+                    <div class="field"><label for="name">姓名</label><input id="name" name="name" placeholder="例如：王先生" required /></div>
+                    <div class="field"><label for="phone">电话</label><input id="phone" name="phone" placeholder="例如：138****8888" required /></div>
+                  </div>
+                  <div class="field"><label for="company">公司</label><input id="company" name="company" placeholder="例如：某某集团" /></div>
+                  <div class="field"><label for="msg">需求描述</label><textarea id="msg" name="msg" placeholder="想解决什么问题？目前有哪些约束？"></textarea></div>
+                  <div class="formActions">
+                    <button class="btn primary" type="submit">提交需求</button>
+                    <span class="hint">支持：云原生 / 数据治理 / AI 应用 / 安全合规</span>
+                  </div>
+                  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container foot">
+        <div>
+          <div class="brand"><span class="logo" aria-hidden="true"></span><span>星岚科技</span></div>
+          <p>以工程化交付为核心，提供企业级云、数据与 AI 的一体化解决方案。</p>
+          <div class="copyright">  <span id="year"></span> 星岚科技 · All rights reserved.</div>
+        </div>
+        <div>
+          <h3>快速入口</h3>
+          <ul>
+            <li><a href="#services">产品与服务</a></li>
+            <li><a href="#solutions">解决方案</a></li>
+            <li><a href="#cases">客户案例</a></li>
+            <li><a href="#careers">加入我们</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>联系我们</h3>
+          <ul>
+            <li>邮箱：<a href="mailto:hello@xinglan.tech">hello@xinglan.tech</a></li>
+            <li>地址：上海市·浦东新区（示例）</li>
+            <li>电话：400-000-0000（示例）</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var btn = document.getElementById('menuBtn');
+        var panel = document.getElementById('mobile');
+        var year = document.getElementById('year');
+        var form = document.getElementById('contactForm');
+        var toast = document.getElementById('toast');
+
+        year.textContent = String(new Date().getFullYear());
+
+        function closeMenu() {
+          panel.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          panel.setAttribute('aria-hidden', 'true');
+        }
+
+        btn.addEventListener('click', function () {
+          var open = panel.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        });
+
+        panel.addEventListener('click', function (e) {
+          if (e.target && e.target.tagName === 'A') closeMenu();
+        });
+
+        window.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeMenu();
+        });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          toast.textContent = '已收到您的需求，我们会尽快联系您（静态演示：未实际发送）。';
+          toast.classList.add('show');
+          form.reset();
+          window.setTimeout(function () { toast.classList.remove('show'); }, 2600);
+        });
+      })();
+    </script>
+  </body>
+</html>
